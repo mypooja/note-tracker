@@ -1,4 +1,5 @@
 const express = require("express");
+const generateUniqueId = require('generate-unique-id');
 const app = express();
 const path = require("path");
 const fs = require("fs");
@@ -37,7 +38,13 @@ app.post('/api/notes/',(req,res)=>{
             })
         } else {
             const dataArr = JSON.parse(data);
-            dataArr.push(req.body);
+            let userNote = {
+                title: req.body.title,
+                text: req.body.text,
+                // creating unique id for each note
+                id: getNewUniqueId(),
+              };
+            dataArr.push(userNote);
             fs.writeFile("./db/db.json",JSON.stringify(dataArr,null,4),(err,data)=>{
                 if(err){
                     console.log(err);
@@ -62,3 +69,11 @@ app.get('*',(req,res)=>{
 app.listen(PORT,()=>{
     console.log(`listenin on port ${PORT}`)
 })
+
+function getNewUniqueId() {
+    return generateUniqueId({
+      length: 5,
+      useLetters: true,
+      useNumbers: true
+    });
+  }
