@@ -17,7 +17,7 @@ create a new task by entering heading and text of task. Click on the save icon t
 
 
 ## Screenshot
-[ScreenShot of the not tracker appilcation](./pubic/assets/note-tracker-screenshot.png)
+![ScreenShot of the note tracker appilcation](./public/assets/note-tracker-screenshot.png)
 
 
 ## Credits
